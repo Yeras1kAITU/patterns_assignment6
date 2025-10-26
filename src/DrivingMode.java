@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class DrivingMode {
+public enum DrivingMode {
+    ECO,
+    SPORT,
+    OFF_ROAD
 }
