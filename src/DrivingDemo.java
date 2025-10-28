@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class DrivingDemo {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Car car = new Car();
 
-        System.out.println("=== Car Driving System ===");
+        System.out.println("Car Driving System");
         displayAvailableModes();
 
         DrivingMode selectedMode = selectDrivingMode(scanner);
@@ -32,26 +32,23 @@ public class DrivingDemo {
 
     private static void displayAvailableModes() {
         System.out.println("Available driving modes:");
-        System.out.println("1 - Eco Mode (default)");
-        System.out.println("2 - Sport Mode");
-        System.out.println("3 - Off-Road Mode");
-        System.out.println("Any other input - Eco Mode");
+        System.out.println("1-Eco Mode (default)");
+        System.out.println("2-Sport Mode");
+        System.out.println("3-Off-Road Mode");
     }
 
     private static DrivingMode selectDrivingMode(Scanner scanner) {
         System.out.print("Choose driving mode (1-3): ");
         String input = scanner.nextLine().trim();
 
-        switch (input) {
-            case "1":
-                return DrivingMode.ECO;
-            case "2":
-                return DrivingMode.SPORT;
-            case "3":
-                return DrivingMode.OFF_ROAD;
-            default:
+        return switch (input) {
+            case "1" -> DrivingMode.ECO;
+            case "2" -> DrivingMode.SPORT;
+            case "3" -> DrivingMode.OFF_ROAD;
+            default -> {
                 System.out.println("Invalid input. Using default Eco Mode.");
-                return DrivingMode.ECO;
-        }
+                yield DrivingMode.ECO;
+            }
+        };
     }
 }
