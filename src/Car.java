@@ -2,9 +2,8 @@ import strategies.*;
 import java.util.Map;
 
 public class Car {
-    private DrivingStrategy drivingStrategy = new EcoDrivingStrategy(); // default strategy
+    private DrivingStrategy drivingStrategy = new EcoDrivingStrategy();
 
-    // Map для хранения стратегий - устранение switch
     private static final Map<DrivingMode, DrivingStrategy> strategies = Map.of(
             DrivingMode.ECO, new EcoDrivingStrategy(),
             DrivingMode.SPORT, new SportDrivingStrategy(),
@@ -16,20 +15,16 @@ public class Car {
         System.out.println("✓ Driving mode changed to: " + strategy.getModeName());
     }
 
-    /**
-     * Type-safe mode changing using Map - без switch
-     */
     public void changeMode(DrivingMode mode) {
         DrivingStrategy strategy = strategies.get(mode);
         if (strategy != null) {
             setDrivingStrategy(strategy);
         } else {
-            // Fallback to default if mode not found (should not happen with enum)
             setDrivingStrategy(new EcoDrivingStrategy());
         }
     }
 
-    public void drive(double distance) {
+    public void drive(float distance) {
         System.out.println("\n=== Starting journey ===");
         System.out.println("Current mode: " + drivingStrategy.getModeName());
 
@@ -38,20 +33,9 @@ public class Car {
         drivingStrategy.navigate();
 
         System.out.print("Fuel calculation: ");
-        double fuelUsed = drivingStrategy.calculateFuelConsumption(distance);
+        float fuelUsed = drivingStrategy.calculateFuelConsumption(distance);
         System.out.printf("Fuel consumed for %.1f km: %.2f liters%n", distance, fuelUsed);
 
         System.out.println("=== Journey completed ===\n");
-    }
-
-    public String getCurrentMode() {
-        return drivingStrategy.getModeName();
-    }
-
-    /**
-     * Вспомогательный метод для получения количества доступных стратегий
-     */
-    public static int getAvailableStrategiesCount() {
-        return strategies.size();
     }
 }

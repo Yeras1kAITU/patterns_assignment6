@@ -12,7 +12,7 @@ public class DrivingDemo {
         car.changeMode(selectedMode);
 
         System.out.print("Enter distance in km: ");
-        double distance = scanner.nextDouble();
+        float distance = scanner.nextFloat();
         scanner.nextLine();
 
         car.drive(distance);

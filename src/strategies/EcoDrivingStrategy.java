@@ -1,7 +1,7 @@
 package strategies;
 
 public class EcoDrivingStrategy implements DrivingStrategy {
-    double fuelEfficiency = 18.5;
+    float fuelEfficiency = 18.5f;
 
     @Override
     public void accelerate() {
@@ -19,8 +19,8 @@ public class EcoDrivingStrategy implements DrivingStrategy {
     }
 
     @Override
-    public double calculateFuelConsumption(double distance) {
-        double fuelUsed = distance / fuelEfficiency;
+    public float calculateFuelConsumption(float distance) {
+        float fuelUsed = distance / fuelEfficiency;
         System.out.printf("Fuel efficiency: %.1f km/l | ", fuelEfficiency);
         return formatFuelConsumption(fuelUsed);
     }
