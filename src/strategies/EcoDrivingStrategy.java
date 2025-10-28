@@ -1,7 +1,7 @@
 package strategies;
 
 public class EcoDrivingStrategy implements DrivingStrategy {
-    float fuelEfficiency = 18.5f;
+    final float fuelEfficiency = 18.5f;
 
     @Override
     public void accelerate() {

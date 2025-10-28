@@ -1,5 +1,6 @@
 import strategies.*;
 import java.util.Map;
+import java.util.Objects;
 
 public class Car {
     private DrivingStrategy drivingStrategy = new EcoDrivingStrategy();
@@ -17,11 +18,7 @@ public class Car {
 
     public void changeMode(DrivingMode mode) {
         DrivingStrategy strategy = strategies.get(mode);
-        if (strategy != null) {
-            setDrivingStrategy(strategy);
-        } else {
-            setDrivingStrategy(new EcoDrivingStrategy());
-        }
+        setDrivingStrategy(Objects.requireNonNullElseGet(strategy, () -> new EcoDrivingStrategy()));
     }
 
     public void drive(float distance) {
